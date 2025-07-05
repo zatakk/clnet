@@ -1,0 +1,974 @@
+/*################# css contents #################*/
+// 1. preloader
+// 2. nav ber section
+// 3. hero section
+// 4. testimonial section
+// 5. faq section
+// 6. hero1 section
+// 7. hero2 section
+// 8. about section
+// 9. questions section
+// 10. service section
+// 11. our  service section
+// 12. great Together section
+// 13. service Details section
+// 14. Construction Faq section
+// 15. blog section
+// 16. blog details section
+// 17. project section
+// 18. most popular section
+// 19. project details section
+// 20. team section
+// 21. team details section
+// 22. professional section
+// 23. contact section
+// 24. global style
+// 25. responsive
+
+/*################################################*/
+
+/*=============== 1. preloader stat ===============*/
+body {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999 !important;
+}
+
+@keyframes square-animation {
+  0% {
+    left: 0;
+    top: 0;
+  }
+
+  10.5% {
+    left: 0;
+    top: 0;
+  }
+
+  12.5% {
+    left: 32px;
+    top: 0;
+  }
+
+  23% {
+    left: 32px;
+    top: 0;
+  }
+
+  25% {
+    left: 64px;
+    top: 0;
+  }
+
+  35.5% {
+    left: 64px;
+    top: 0;
+  }
+
+  37.5% {
+    left: 64px;
+    top: 32px;
+  }
+
+  48% {
+    left: 64px;
+    top: 32px;
+  }
+
+  50% {
+    left: 32px;
+    top: 32px;
+  }
+
+  60.5% {
+    left: 32px;
+    top: 32px;
+  }
+
+  62.5% {
+    left: 32px;
+    top: 64px;
+  }
+
+  73% {
+    left: 32px;
+    top: 64px;
+  }
+
+  75% {
+    left: 0;
+    top: 64px;
+  }
+
+  85.5% {
+    left: 0;
+    top: 64px;
+  }
+
+  87.5% {
+    left: 0;
+    top: 32px;
+  }
+
+  98% {
+    left: 0;
+    top: 32px;
+  }
+
+  100% {
+    left: 0;
+    top: 0;
+  }
+}
+
+.loader {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  transform: rotate(45deg);
+}
+
+.loader-square {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  margin: 2px;
+  border-radius: 0px;
+  background: #ffc700;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  animation: square-animation 10s ease-in-out infinite both;
+}
+
+.loader-square:nth-of-type(0) {
+  animation-delay: 0s;
+}
+
+.loader-square:nth-of-type(1) {
+  animation-delay: -1.4285714286s;
+}
+
+.loader-square:nth-of-type(2) {
+  animation-delay: -2.8571428571s;
+}
+
+.loader-square:nth-of-type(3) {
+  animation-delay: -4.2857142857s;
+}
+
+.loader-square:nth-of-type(4) {
+  animation-delay: -5.7142857143s;
+}
+
+.loader-square:nth-of-type(5) {
+  animation-delay: -7.1428571429s;
+}
+
+.loader-square:nth-of-type(6) {
+  animation-delay: -8.5714285714s;
+}
+
+.loader-square:nth-of-type(7) {
+  animation-delay: -10s;
+}
+
+/*===============  preloader end ===============*/
+
+/*################# home page start #################*/
+/*=============== 2. nav ber section stat ===============*/
+.nav-section {
+  .nav ul.slide {
+    transform: translateY(0);
+  }
+
+
+  .submenu {
+    position: absolute;
+    top: 3.5rem;
+    left: -2rem;
+    padding: 0 1rem 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(1rem);
+    border-radius: 0 0 0.25rem 0.25rem;
+    box-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f;
+    background-color: #ffffff;
+    transition: all 0.3s ease-in-out;
+
+    &-item {
+      display: block;
+    }
+  }
+
+  /* dropdown menu end */
+
+  /* mobile dropdown start */
+  .dropdown-container {
+    display: none;
+  }
+
+  .downs {
+    transition: 0.5s;
+  }
+
+  .active {
+    .downs {
+      transform: rotate(90deg);
+      transition: 0.5s;
+    }
+  }
+
+  /* mobile dropdown end */
+}
+
+/*=============== nav ber section end ===============*/
+
+/*=============== 3. hero section start ===============*/
+.hero-section {
+  background: url(/images/Home_page_hero.webp) #000 50% / cover no-repeat;
+  position: relative;
+
+  /* hero section infinity round image start */
+  .hero-area {
+    @keyframes rotate-full {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(359deg);
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(359deg);
+      }
+    }
+
+    @keyframes infinite-spinning {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .animated {
+      animation-duration: 1s;
+      animation-fill-mode: both;
+
+      & .infinite {
+        animation-iteration-count: infinite;
+      }
+    }
+
+    .box1 {
+      border-radius: 100%;
+      transform: rotate(0deg);
+
+      img {
+        max-width: 100%;
+        border-radius: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .rotate {
+      animation: rotation-full 5s infinite linear;
+    }
+
+    .rotate-full {
+      animation: infinite-spinning 16s infinite linear;
+    }
+  }
+
+  /* hero section infinity round image end */
+}
+
+/*=============== hero section end ===============*/
+
+/*=============== 4. testimonial section start ===============*/
+.testimonial-section {
+  background: url(/images/testimonial.png) lightgray 50% / cover no-repeat;
+
+
+  .textColor {
+    -webkit-text-stroke: 2px black;
+  }
+
+  /* testimonial section end*/
+}
+
+/*=============== testimonial section end ===============*/
+
+/*=============== 5. faq section start ===============*/
+.faq-section {
+  background: url(/images/faq-img.png) lightgray 50% / cover no-repeat;
+  background-attachment: fixed;
+
+  .container {
+    .header-area {
+      padding: 20px 16px;
+      cursor: pointer;
+    }
+
+    .active .header-area .btnfrv {
+      display: none;
+    }
+
+    .content-area {
+      display: none;
+    }
+
+    .active .header-area .btnfadd {
+      i {
+        color: #000000;
+      }
+
+      display: block;
+    }
+
+    .active .header-area .text {
+      color: #000000;
+    }
+  }
+}
+
+/*=============== faq section end ===============*/
+/*############## home page end ##############*/
+
+/*############## home1 page start ##############*/
+/*=============== 6. hero1 section start ===============*/
+.hero1-section {
+  background: url(/images/home1-hero.png) lightgray 50% / cover
+  no-repeat;
+}
+
+/*=============== hero1 section end ===============*/
+/*############## home1 page end ##############*/
+
+/*############## home2 page start ##############*/
+/*=============== 7. hero2 section start ===============*/
+.hero1 {
+  background: url(/images/home2-hero1.png) lightgray 50% / cover
+  no-repeat;
+}
+
+.hero2 {
+  background: linear-gradient(0deg,
+      rgba(0, 0, 0, 0.692) 0%,
+      rgba(0, 0, 0, 0.692) 100%),
+    url(/images/home2-hero2.png) lightgray 50% / cover no-repeat;
+}
+
+.hero3 {
+  background: linear-gradient(0deg,
+      rgba(0, 0, 0, 0.692) 0%,
+      rgba(0, 0, 0, 0.692) 100%),
+    url(/images/home2-hero3.png) lightgray 50% / cover no-repeat;
+}
+
+.hero4 {
+  background: linear-gradient(0deg,
+      rgba(0, 0, 0, 0.692) 0%,
+      rgba(0, 0, 0, 0.692) 100%),
+    url(/images/home2-hero4.png) lightgray 50% / cover no-repeat;
+}
+
+/*=============== hero2 section end ===============*/
+/*############## home2 page end ##############*/
+
+/*############## about page start ##############*/
+/*=============== 8. about section start ===============*/
+.about-section {
+  background: url(/images/about-page/about.png) lightgray 50% / cover no-repeat;
+}
+
+/*=============== about section end ===============*/
+
+/*=============== 9. questions section start ===============*/
+.questions-section {
+  background: url(/images/about-page/questions.png) lightgray 50% / cover no-repeat;
+}
+
+/*=============== questions section end ===============*/
+/*############## about page end ##############*/
+
+/*############## service page end ##############*/
+/*=============== 10. service section start ===============*/
+.service-section {
+  background: url(/images/services-page/service.png) lightgray 50% / cover no-repeat;
+}
+
+/*=============== service section end ===============*/
+/*=============== 11. our  service section start ===============*/
+.our-service-section {
+  .card {
+    transition: 0.5s;
+  }
+
+  .card:hover {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transition: 0.5s;
+    transform: scale(1.02);
+  }
+}
+
+/*=============== our service section end ===============*/
+
+/*=============== 12. great Together section start ===============*/
+.great-together-section {
+  background: url(/images/services-page/together.png) lightgray 50% / cover no-repeat;
+
+  /* nice select start */
+  .nice-select .option.focus,
+  .nice-select .option.selected.focus {
+    background-color: #e8e8e8;
+    width: 100%;
+  }
+
+  .nice-select {
+    padding-left: 4px;
+  }
+
+  .nice-select.open .list {
+    width: 100%;
+  }
+
+  .nice-select .option {
+    background-color: #ffff;
+    color: #181a20;
+  }
+
+  .current {
+    color: #747474;
+    padding-right: 16px;
+    padding-left: 6px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  /* nice select start */
+}
+
+/*=============== great Together section end ===============*/
+/*############## service page end ##############*/
+
+/*############## service Details page start ##############*/
+/*=============== 13. service Details section start ===============*/
+.service-details-section {
+  background: url(/images/services-details-page/services-details.png) lightgray 50% / cover no-repeat;
+}
+
+/*=============== service Details section end ===============*/
+
+/*=============== 14. Construction Faq section start ===============*/
+.construction-faq-section {
+  .container {
+    .header-area {
+      padding: 20px 16px;
+      cursor: pointer;
+    }
+
+    .active .header-area .btnfrv {
+      display: none;
+    }
+
+    .content-area {
+      // display: none;
+    }
+
+    .active .header-area .btnfadd {
+      i {
+        color: #000000;
+      }
+
+      display: block;
+    }
+
+    .active .header-area .text {
+      color: #000000;
+    }
+
+    .working {
+      background: url(/images/services-details-page/working.png) lightgray 50% / cover no-repeat;
+    }
+  }
+}
+
+/*=============== Construction Faq section end ===============*/
+/*############## service Details page end ##############*/
+
+/*############## blog page start ##############*/
+/*=============== 15. blog section start ===============*/
+.blog-section {
+  background: url(/images/blog-page/blog-hero.png) lightgray 50% / cover no-repeat;
+}
+
+/*=============== blog section end ===============*/
+/*############## blog page end ##############*/
+
+/*############## blog details page start ##############*/
+/*=============== 16. blog details section start ===============*/
+.blog-details-section {
+  background: url(/images/blog-details-page/blog-details.png) lightgray
+  50% / cover no-repeat;
+}
+
+/*=============== blog details section end ===============*/
+/*############## blog details page end ##############*/
+
+/*############## project page start ##############*/
+/*=============== 17. project section start ===============*/
+.project-section {
+  background: url(/images/project-page/project-bred-crumb.png) lightgray 50% / cover no-repeat;
+}
+
+.react-tabs__tab--selected {
+  background: #ffc700 !important;
+}
+
+/*=============== project section end ===============*/
+
+/*=============== 18. most popular section start ===============*/
+.most-popular-section {
+
+  /* nice select start */
+  .nice-select .option.focus,
+  .nice-select .option.selected.focus {
+    background-color: #e8e8e8;
+    width: 100%;
+  }
+
+  .nice-select {
+    padding: 22px 10px;
+    border-radius: 0px;
+  }
+
+  .nice-select.open .list {
+    width: 100%;
+  }
+
+  .nice-select .option {
+    background-color: #ffff;
+    color: #000000;
+  }
+
+  .current {
+    color: #000000;
+    padding-right: 16px;
+    padding-left: 6px;
+    font-weight: 500;
+  }
+
+}
+
+/*=============== most popular section end ===============*/
+/*############## project page end ##############*/
+
+/*############## project details page start ##############*/
+/*=============== 19. project details section start ===============*/
+.project-details-section {
+  background: url(/images/project-details-page/project-bred-crumb2.png) lightgray 50% / cover no-repeat;
+}
+
+/*=============== project details section end ===============*/
+/*############## project details page end ##############*/
+
+/*############## team page start ##############*/
+/*=============== 20. team section start ===============*/
+.team-section {
+  background: url(/images/team-page/team-bred-crumb.png) lightgray 50% / cover no-repeat;
+}
+
+/*=============== team section end ===============*/
+/*############## team page end ##############*/
+
+/*############## team details page start ##############*/
+/*=============== 21. team details section start ===============*/
+.team-details-section {
+  background: url(/images/team-page/teamdet-bred-crumb.png) lightgray 50% / cover no-repeat;
+}
+/*=============== team details section end ===============*/
+
+/*=============== 22. professional section start ===============*/
+.professional-section {
+
+  /* nice select start */
+  .nice-select .option.focus,
+  .nice-select .option.selected.focus {
+    background-color: #e8e8e8;
+    width: 100%;
+  }
+
+  .nice-select {
+    border-radius: 0px;
+  }
+
+  .nice-select.open .list {
+    width: 100%;
+  }
+
+  .nice-select .option {
+    background-color: #ffff;
+    color: #747474;
+  }
+
+  .current {
+    color: #747474;
+    padding-right: 10px;
+    // padding-left: 6px;
+    font-weight: 500;
+  }
+
+  /* nice select start */
+}
+
+/*=============== professional section end ===============*/
+/*############## team details page end ##############*/
+
+/*############## contact page start ##############*/
+/*=============== 23. contact section start ===============*/
+.contact-section {
+  background: url(/images/contact.png) lightgray 50% / cover no-repeat;
+}
+
+/*=============== contact section end ===============*/
+/*############## contact page end ##############*/
+.video-odometer {
+    background: url(/images/about-page/video&odomi.png) lightgray 50% / cover no-repeat;
+  }
+
+/*=============== 24. global style start ===============*/
+//navber before underline
+.act-color .nav-link .underline {
+  height: 3px;
+  background-color: transparent;
+  width: 0%;
+  transition: width 0.2s, background-color 0.5s;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.act-color .nav-link.active-link .underline {
+  width: 100%;
+  background-color: #000000;
+  transition: 0.8s;
+}
+
+.act-color .nav-link:hover .underline {
+  background-color: #000000;
+  width: 100%;
+  transition: 0.8s;
+}
+
+/*team card icon show and hidden start*/
+.team-icons {
+  opacity: 0;
+  transition: 0.8s;
+  margin-right: -2rem;
+}
+
+.show {
+  opacity: 1;
+  transition: 0.8s;
+  margin-right: 0;
+}
+
+/*team card icon show and hidden end*/
+
+/* hero animation button start */
+.custom-btn {
+  background: transparent;
+  transition: all 0.4s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.btn-15 {
+  z-index: 1;
+}
+
+.btn-15:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  background: #ffc700;
+  // box-shadow: 0 0 20px #ffc700;
+  transition: all 0.4s ease;
+}
+
+.btn-15:hover:after {
+  left: 0;
+  width: 100%;
+}
+
+.btn-15:active {
+  top: 2px;
+}
+
+/* hero animation button end */
+
+/* all animation button start */
+.btn {
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transition: all 0.4s ease;
+  display: -webkit-flex;
+  display: flex;
+  border: 0;
+
+  span {
+    z-index: 1;
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    top: 0;
+    transition: all 0.4s ease;
+    background-color: #FFC000;
+  }
+
+  &:before {
+    left: 0;
+  }
+
+  &:after {
+    right: 0;
+  }
+
+  &:hover {
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px -12px rgba(0, 0, 0, 0.2);
+    color: #000000;
+
+    &:before,
+    &:after {
+      width: 51%;
+    }
+  }
+}
+
+.btn1 {
+  background-color: #000000;
+  color: #ffffff;
+  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transition: all 0.4s ease;
+  display: -webkit-flex;
+  display: flex;
+  border: 0;
+
+  span {
+    z-index: 1;
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    top: 0;
+    transition: all 0.4s ease;
+    background-color: #ffefb7;
+  }
+
+  &:before {
+    left: 0;
+  }
+
+  &:after {
+    right: 0;
+  }
+
+  &:hover {
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px -12px rgba(0, 0, 0, 0.2);
+    color: #000000;
+
+    &:before,
+    &:after {
+      width: 51%;
+    }
+  }
+}
+
+.btn2 {
+  background-color: #000000;
+  color: #ffffff;
+  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transition: all 0.4s ease;
+  display: -webkit-flex;
+  display: flex;
+  border: 0;
+
+  span {
+    z-index: 1;
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    top: 0;
+    transition: all 0.4s ease;
+    background-color: #ffc964;
+  }
+
+  &:before {
+    left: 0;
+  }
+
+  &:after {
+    right: 0;
+  }
+
+  &:hover {
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px -12px rgba(0, 0, 0, 0.2);
+    color: #000000;
+
+    &:before,
+    &:after {
+      width: 51%;
+    }
+  }
+}
+
+/* all animation button start */
+
+// wave animation start
+$color: #000000;
+
+.circle-ripple {
+  border-radius: 50%;
+  animation: ripple 1.5s linear infinite;
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba($color, 0.3), 0 0 0 1em rgba($color, 0.3),
+      0 0 0 2em rgba($color, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 1em rgba($color, 0.3), 0 0 0 2em rgba($color, 0.3),
+      0 0 0 3em rgba($color, 0);
+  }
+}
+
+// wave animation end
+
+/* img zoom in zoom out start */
+.img-box {
+  overflow: hidden;
+}
+
+.img {
+  background-size: cover;
+  -ms-transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.img:hover {
+  -ms-transform: scale(1.1, 1.1);
+  -webkit-transform: scale(1.1, 1.1);
+  -moz-transform: scale(1.1, 1.1);
+  -o-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+}
+
+/* img zoom in zoom out end */
+
+/*=============== global style end ===============*/
+
+/*=============== 25. responsive ===============*/
+
+@media (max-width: 992px) {
+
+  /*=============== faq section start ===============*/
+  .faq-section {
+    .container {
+      .header-area {
+        padding: 16px 16px;
+      }
+    }
+  }
+
+  /*=============== faq section end ===============*/
+}
+
+@media only screen and (max-width: 992px) {
+
+  /*=============== nav section start ===============*/
+  .nav-section {
+    .menu-bars {
+      display: flex;
+    }
+
+    .nav ul {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      justify-content: space-evenly;
+      flex-direction: column;
+      align-items: center;
+      background-color: #ffc700;
+      z-index: 1;
+      transform: translateY(-100%);
+      transition: all 1s;
+    }
+  }
+
+  /*=============== nav section end ===============*/
+}
+
+@media (max-width: 576px) {
+
+  /*=============== project section nice select start ===============*/
+  .most-popular-section {
+    .nice-select {
+      padding: 16px 10px;
+    }
+  }
+
+  /*=============== project section nice select  end ===============*/
+}

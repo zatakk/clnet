@@ -1,0 +1,56 @@
+/* Navbar dropdown styles */
+.menu-dropdown {
+  position: relative;
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  min-width: 200px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease-in-out;
+  z-index: 50;
+}
+
+
+/* Style for submenu items */
+.submenu-item {
+  margin: 0.5rem 0;
+}
+
+.submenu-link {
+  display: block;
+  padding: 0.5rem;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.submenu-link:hover {
+  background-color: #f3f4f6;
+  border-radius: 4px;
+}
+
+/* Underline animation */
+.underline {
+  height: 2px;
+  background-color: currentColor;
+  width: 0;
+  transition: width 0.3s ease;
+}
+
+.submenu-link:hover + .underline {
+  width: 100%;
+} 
+a.submenu-link.cursor-pointer.font-normal {
+    color: #f7f2f2;
+}
+a.submenu-link.cursor-pointer.font-normal:hover {
+    color: #000000;
+}

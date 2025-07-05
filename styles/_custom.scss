@@ -1,0 +1,315 @@
+//Custom Css For the Construction Website.
+
+header.nav-section.bg-secondary1 {
+    background: #000000;
+}
+
+a.submenu-link.cursor-pointer.font-normal {
+    color: var(--color-nu30);
+}
+
+.nav-section .submenu {
+    min-width: 150px;
+    left: 0px;
+    border-radius: 9px;
+    margin-top: -14px;
+}
+
+.submenu-item .submenu-link {
+    padding: 2px 8px;
+}
+
+.nav-section .menu-dropdown .submenu {
+    background: rgba(0, 0, 0, 0.86);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.7019607843);
+    display: none;
+}
+
+/* Show submenu when clicked (via .show class) */
+.nav-section .menu-dropdown .submenu.show {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+}
+
+.hero-section:after {
+    content: "";
+    background: #0000003d;
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    top: 0px;
+    height: 100%;
+    z-index: -1;
+}
+
+.img-box {
+    background: #000;
+}
+
+.img-box img {
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+}
+
+.info-box {
+    max-width: 320px;
+}
+
+header.nav-section.bg-secondary1 {
+    max-width: 1296px;
+    padding: 5px 10px;
+    border: 1px solid var(--color-secondary1);
+    margin: 0 auto;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    border-radius: 18px;
+    top: 20px;
+    background: rgba(0, 0, 0, 0.86);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: #000000b3;
+}
+
+.logo-image {
+    max-width: 60px;
+}
+
+li.menu-item.menu-dropdown {
+    border: 1px solid #fff;
+    padding: 4px 12px;
+    border-radius: 10px;
+}
+
+span.menu-link.flex {
+    gap: 8px;
+    align-items: center;
+}
+
+img.icon-image {
+    max-width: 27px;
+}
+
+
+.submenu.show {
+    background: rgba(0, 0, 0, 0.86);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.7019607843);
+}
+
+
+.project-section {
+    background: url('../public/images/terms-conditions_banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.service-details-section {
+    background: url('../public/images/terms-conditions_banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.icon-list {
+    background-color: #FBF3D6;
+    padding: 15px 15px 15px 15px;
+    border-radius: 100px 100px 100px 100px;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn.card-btm:before,
+.btn.card-btm:after {
+    background-color: #e4dfde;
+}
+
+.service-image {
+    width: 100%;
+    height: 356px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 100% 100% 100% 100%;
+}
+
+.relative-image-container {
+    position: relative;
+}
+
+.relative-container:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: auto;
+    width: 100%;
+    height: 100%;
+    background: url(/_next/static/media/shape.ee493dd3.svg);
+    border-radius: 100% 100% 100% 100%;
+    z-index: -1;
+    right: -110px;
+}
+
+.order-1 .relative-container:after {
+    left: -110px;
+    right: auto;
+}
+
+.professional-section {
+    background: url('../public/images/professionals/Professional_Hero_Banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.pro-section .icon-list {
+    background-color: #EFF9FF;
+}
+
+/* globals.css or a CSS module */
+.corner-accent::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    width: 200px;
+    height: 200px;
+    background-color: #facc15;
+    z-index: -1;
+}
+
+.explore-heading {
+    border-radius: 10px;
+    background-color: #facc15;
+    max-width: 250px;
+    width: 100%;
+    margin-top: -28px;
+    text-transform: uppercase;
+}
+
+.corner-accent::after {
+    content: "";
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+    background-color: #facc15;
+    z-index: -1;
+}
+
+.full-height-image {
+    height: 100% !important;
+}
+
+.colleges-icon.icon-list {
+    border: 2px solid #000;
+    padding: 1em;
+    background: #fff;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.icon-list.corporate-icon {
+    background-color: #FCEBBC;
+}
+
+.nav-section .submenu {
+    top: 100%;
+}
+
+.bg-pro-right {
+    background: linear-gradient(89.7deg, rgba(71, 71, 71, 0) 24.67%, rgba(187, 147, 26, 0.630605) 74.9%, #FFC000 99.77%);
+    border-radius: 250px;
+    border: 0px;
+}
+
+.bg-pro-left {
+
+    background: linear-gradient(89.7deg, #FFC000 0.28%, rgba(187, 147, 26, 0.630605) 25.15%, rgba(71, 71, 71, 0) 74.9%);
+    border-radius: 250px;
+    border: 0px;
+}
+
+.pro-block img {
+    border: 3px solid #FFFFFF;
+    border-radius: 200px;
+}
+
+.professionals-heading {
+    margin-top: -57px;
+    position: absolute;
+
+}
+
+.questions-section {
+    background: url(../public/images/construction_3.jpg) lightgray 50% / cover no-repeat;
+}
+
+.tabcontents input {
+    border-top-left-radius: .75rem;
+    border-bottom-left-radius: .75rem;
+}
+
+@media screen and (max-width: 767px) {
+    .flex.justify-center.order-2 {
+        order: 1;
+    }
+
+    .flex.justify-center.order-1 {
+        order: 1;
+    }
+
+    .order-1 {
+        order: 2;
+    }
+
+    header.nav-section.bg-secondary1 {
+        max-width: 1296px;
+        padding: 15px 20px;
+        top: 0;
+        border: 0px;
+        border-radius: 0px;
+        margin: 0;
+        position: sticky;
+        left: 0px;
+        right: 0px;
+        background-color: rgb(6 6 6);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        z-index: 22;
+    }
+
+    .order-2.centred-block,
+    .order-1.centred-block {
+        display: block;
+        align-items: center;
+        justify-content: space-evenly;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+
+    .order-2.centred-block .icon-list,
+    .order-1.centred-block .icon-list {
+        margin: 0 auto;
+    }
+
+    .bg-pro-right,
+    .bg-pro-left {
+        background: none;
+    }
+
+    .w-full.flex.lg\:order-2.justify-end.mobile-left {
+        justify-content: flex-start;
+    }
+}
