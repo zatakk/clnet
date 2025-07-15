@@ -71,6 +71,46 @@ export default function Navbar() {
                   <ul className={`submenu w-[100px] ${exploreClicked ? 'show' : ''}`}>
                     <li className="submenu-item nav-link mt-2">
                       <Link
+                        href="/blogs"
+                        className="submenu-link text-[16px] cursor-pointer font-normal">
+                        Blogs
+                      </Link>
+                      
+                    </li>
+                    <li className="submenu-item nav-link mt-2">
+                      <Link
+                        href="/jobs"
+                        className="submenu-link text-[16px] cursor-pointer font-normal">
+                        Jobs
+                      </Link>
+                      
+                    </li>
+                    <li className="submenu-item nav-link mt-2">
+                      <Link
+                        href="/events"
+                        className="submenu-link text-[16px] cursor-pointer font-normal">
+                        Events
+                      </Link>
+                      
+                    </li>
+                    <li className="submenu-item nav-link mt-2">
+                      <Link
+                        href="/memberships"
+                        className="submenu-link text-[16px] cursor-pointer font-normal">
+                        Memberships
+                      </Link>
+                      
+                    </li>
+                    <li className="submenu-item nav-link mt-2">
+                      <Link
+                        href="/courses"
+                        className="submenu-link text-[16px] cursor-pointer font-normal">
+                        Courses
+                      </Link>
+                      
+                    </li>
+                    <li className="submenu-item nav-link mt-2">
+                      <Link
                         href="/students"
                         className="submenu-link text-[16px] cursor-pointer font-normal">
                         Students
@@ -135,14 +175,6 @@ export default function Navbar() {
                   <ul className={`submenu w-[100px] ${servicesClicked ? 'show' : ''}`}>
                     <li className="submenu-item nav-link mt-2">
                       <Link
-                        href="/courses"
-                        className="submenu-link text-[16px] cursor-pointer font-normal">
-                        Courses
-                      </Link>
-                      
-                    </li>
-                    <li className="submenu-item nav-link mt-2">
-                      <Link
                         href="/webinars"
                         className="submenu-link text-[16px] cursor-pointer font-normal">
                         Webinars
@@ -180,7 +212,6 @@ export default function Navbar() {
                         className="submenu-link text-[16px] cursor-pointer font-normal">
                         Membership
                       </Link>
-                      
                     </li>
                   </ul>
                 </li>
