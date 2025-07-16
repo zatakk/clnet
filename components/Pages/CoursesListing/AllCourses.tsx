@@ -5,14 +5,39 @@ import Image from "next/image";
 import Link from "next/link";
 import Select from "react-select";
 
-export default function CoursesPage() {
-  const [courses, setCourses] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [levels, setLevels] = useState([]);
-  const [instructors, setInstructors] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+interface Course {
+  id: number;
+  title: string;
+  description: string;
+  featured_image: string;
+  wc_price: string;
+  link: string;
+}
 
-  const [filters, setFilters] = useState({
+interface FilterOption {
+  value: string | number;
+  label: string;
+}
+
+interface Filters {
+  category: FilterOption | null;
+  level: FilterOption | null;
+  instructor: FilterOption | null;
+  priceType: string | null;
+  priceMin: string;
+  priceMax: string;
+  durationMin: string;
+  durationMax: string;
+}
+
+export default function CoursesPage() {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [categories, setCategories] = useState<FilterOption[]>([]);
+  const [levels, setLevels] = useState<FilterOption[]>([]);
+  const [instructors, setInstructors] = useState<FilterOption[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const [filters, setFilters] = useState<Filters>({
     category: null,
     level: null,
     instructor: null,
@@ -27,9 +52,9 @@ export default function CoursesPage() {
     setIsLoading(true);
     try {
       const params = new URLSearchParams();
-      if (filters.category?.value) params.append("catid", filters.category.value);
-      if (filters.level?.value) params.append("level", filters.level.value);
-      if (filters.instructor?.value) params.append("instructor", filters.instructor.value);
+      if (filters.category?.value) params.append("catid", filters.category.value.toString());
+      if (filters.level?.value) params.append("level", filters.level.value.toString());
+      if (filters.instructor?.value) params.append("instructor", filters.instructor.value.toString());
       if (filters.priceType) params.append("price", filters.priceType);
       if (filters.priceMin) params.append("price_min", filters.priceMin);
       if (filters.priceMax) params.append("price_max", filters.priceMax);
@@ -42,7 +67,7 @@ export default function CoursesPage() {
 
       if (!res.ok) throw new Error('Failed to fetch courses');
 
-      const data = await res.json();
+      const data: Course[] = await res.json();
       setCourses(data);
     } catch (error) {
       console.error('Error fetching courses:', error);
@@ -52,29 +77,29 @@ export default function CoursesPage() {
     }
   };
 
-  const fetchFilters = async () => {
-    try {
-      const [catRes, levelRes, instructorRes] = await Promise.all([
-        fetch("https://construction-world.org/lms/wp-json/custom-llms/v1/course-categories"),
-        fetch("https://construction-world.org/lms/wp-json/custom-llms/v1/course-difficulties"),
-        fetch("https://construction-world.org/lms/wp-json/custom-llms/v1/instructors"),
-      ]);
+ const fetchFilters = async () => {
+  try {
+    const [catRes, levelRes, instructorRes] = await Promise.all([
+      fetch("https://construction-world.org/lms/wp-json/custom-llms/v1/course-categories"),
+      fetch("https://construction-world.org/lms/wp-json/custom-llms/v1/course-difficulties"),
+      fetch("https://construction-world.org/lms/wp-json/custom-llms/v1/instructors"),
+    ]);
 
-      const [catData, levelData, instructorData] = await Promise.all([
-        catRes.json(),
-        levelRes.json(),
-        instructorRes.json(),
-      ]);
+    const [catData, levelData, instructorData] = await Promise.all([
+      catRes.json() as Promise<Array<{ id: number; name: string }>>,
+      levelRes.json() as Promise<Array<{ id: number; name: string }>>,
+      instructorRes.json() as Promise<Array<{ id: number; name: string }>>,
+    ]);
 
-      setCategories(catData.map(item => ({ value: item.id, label: item.name })));
-      setLevels(levelData.map(item => ({ value: item.id, label: item.name })));
-      setInstructors(instructorData.map(item => ({ value: item.id, label: item.name })));
-    } catch (error) {
-      console.error('Error fetching filters:', error);
-    }
-  };
+    setCategories(catData.map((item) => ({ value: item.id, label: item.name })));
+    setLevels(levelData.map((item) => ({ value: item.id, label: item.name })));
+    setInstructors(instructorData.map((item) => ({ value: item.id, label: item.name })));
+  } catch (error) {
+    console.error('Error fetching filters:', error);
+  }
+};
 
-  const handleFilterChange = (name, value) => {
+  const handleFilterChange = (name: keyof Filters, value: any) => {
     setFilters(prev => ({ ...prev, [name]: value }));
   };
 
@@ -89,14 +114,14 @@ export default function CoursesPage() {
     return () => clearTimeout(timer);
   }, [filters]);
 
-  const stripAndTrim = (html) => {
+  const stripAndTrim = (html: string): string => {
     if (!html) return "";
     const tmp = document.createElement("div");
     tmp.innerHTML = html;
-    return tmp.textContent?.trim().slice(0, 120) + "...";
+    return tmp.textContent?.trim().slice(0, 120) + "..." || "";
   };
 
-  const decodeHtml = (html) => {
+  const decodeHtml = (html: string): string => {
     const txt = document.createElement("textarea");
     txt.innerHTML = html;
     return txt.value;
@@ -192,22 +217,50 @@ export default function CoursesPage() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Min Price (₹)</label>
-              <input type="number" value={filters.priceMin} onChange={(e) => handleFilterChange('priceMin', e.target.value)} placeholder="Min Price" className="border px-3 py-2 rounded text-black w-full" min="0" />
+              <input 
+                type="number" 
+                value={filters.priceMin} 
+                onChange={(e) => handleFilterChange('priceMin', e.target.value)} 
+                placeholder="Min Price" 
+                className="border px-3 py-2 rounded text-black w-full" 
+                min="0" 
+              />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Max Price (₹)</label>
-              <input type="number" value={filters.priceMax} onChange={(e) => handleFilterChange('priceMax', e.target.value)} placeholder="Max Price" className="border px-3 py-2 rounded text-black w-full" min="0" />
+              <input 
+                type="number" 
+                value={filters.priceMax} 
+                onChange={(e) => handleFilterChange('priceMax', e.target.value)} 
+                placeholder="Max Price" 
+                className="border px-3 py-2 rounded text-black w-full" 
+                min="0" 
+              />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Min Duration (mins)</label>
-              <input type="number" value={filters.durationMin} onChange={(e) => handleFilterChange('durationMin', e.target.value)} placeholder="Min Duration" className="border px-3 py-2 rounded text-black w-full" min="0" />
+              <input 
+                type="number" 
+                value={filters.durationMin} 
+                onChange={(e) => handleFilterChange('durationMin', e.target.value)} 
+                placeholder="Min Duration" 
+                className="border px-3 py-2 rounded text-black w-full" 
+                min="0" 
+              />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Max Duration (mins)</label>
-              <input type="number" value={filters.durationMax} onChange={(e) => handleFilterChange('durationMax', e.target.value)} placeholder="Max Duration" className="border px-3 py-2 rounded text-black w-full" min="0" />
+              <input 
+                type="number" 
+                value={filters.durationMax} 
+                onChange={(e) => handleFilterChange('durationMax', e.target.value)} 
+                placeholder="Max Duration" 
+                className="border px-3 py-2 rounded text-black w-full" 
+                min="0" 
+              />
             </div>
 
             <button
@@ -233,13 +286,21 @@ export default function CoursesPage() {
                   return (
                     <div key={course.id} className="bg-white border rounded-xl shadow p-4 flex flex-col hover:shadow-lg transition-shadow">
                       <div className="relative w-full h-48 mb-4">
-                        <Image src={imageSrc} alt={course.title} fill className="object-cover rounded bg-gray-300" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                        <Image 
+                          src={imageSrc} 
+                          alt={course.title} 
+                          fill 
+                          className="object-cover rounded bg-gray-300" 
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
+                        />
                       </div>
                       <h3 className="text-lg font-semibold text-nu30">{decodeHtml(course.title)}</h3>
                       <p className="text-sm text-gray-600 my-2">{stripAndTrim(course.description)}</p>
                       <div className="flex justify-between items-center mt-auto pt-2">
                         <span dangerouslySetInnerHTML={{ __html: course.wc_price || "Free" }} className="font-bold text-primary" />
-                        <Link href={course.link} target="_blank" className="text-sm font-medium text-white bg-primary hover:bg-primary-dark px-4 py-2 rounded transition-colors">Enroll Now</Link>
+                        <Link href={course.link} target="_blank" className="text-sm font-medium text-white bg-primary hover:bg-primary-dark px-4 py-2 rounded transition-colors">
+                          Enroll Now
+                        </Link>
                       </div>
                     </div>
                   );

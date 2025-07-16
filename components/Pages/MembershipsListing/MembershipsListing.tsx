@@ -2,25 +2,47 @@
 
 import { useEffect, useState } from "react";
 
+interface MembershipLevel {
+  level_id: string;
+  level_name: string;
+  initial_payment: number;
+  billing_amount: number;
+  cycle_number: string;
+  cycle_period: string;
+  buy_url: string;
+}
+
 export default function MembershipsListing() {
-  const [levels, setLevels] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [levels, setLevels] = useState<MembershipLevel[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchMemberships = async () => {
       setLoading(true);
-      const res = await fetch("https://construction-world.org/wp-json/custom-api/v1/membership-levels");
-      const data = await res.json();
-      setLevels(data);
-      setLoading(false);
+      try {
+        const res = await fetch(
+          "https://construction-world.org/wp-json/custom-api/v1/membership-levels"
+        );
+        if (!res.ok) {
+          throw new Error('Failed to fetch membership levels');
+        }
+        const data: MembershipLevel[] = await res.json();
+        setLevels(data);
+      } catch (error) {
+        console.error('Error fetching membership levels:', error);
+        setLevels([]);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchMemberships();
   }, []);
 
-  const formatCycle = (cycle_number, cycle_period) => {
+  const formatCycle = (cycle_number: string, cycle_period: string): string => {
     if (cycle_number === "0" || cycle_period === "0") return "One-time";
-    return `${cycle_number} ${cycle_period}${cycle_number > 1 ? "s" : ""}`;
+    const num = parseInt(cycle_number);
+    return `${num} ${cycle_period}${num > 1 ? "s" : ""}`;
   };
 
   return (

@@ -4,15 +4,32 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-function stripHtmlTags(html) {
+interface Post {
+  id: number;
+  title: {
+    rendered: string;
+  };
+  excerpt: {
+    rendered: string;
+  };
+  link: string;
+  categories: number[];
+  _embedded?: {
+    "wp:featuredmedia"?: Array<{
+      source_url: string;
+    }>;
+  };
+}
+
+function stripHtmlTags(html: string): string {
   if (!html) return "";
   return html.replace(/<[^>]+>/g, "").trim();
 }
 
 export default function BlogsListing() {
-  const [posts, setPosts] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
   const perPage = 9;
 
   useEffect(() => {
@@ -20,7 +37,7 @@ export default function BlogsListing() {
       const res = await fetch(
         `https://construction-world.org/blogs/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&_embed`
       );
-      const data = await res.json();
+      const data: Post[] = await res.json();
       const totalPages = res.headers.get("X-WP-TotalPages");
 
       setPosts(data);
