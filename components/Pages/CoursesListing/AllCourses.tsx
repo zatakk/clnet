@@ -285,7 +285,7 @@ export default function CoursesPage() {
                   const imageSrc = typeof course.featured_image === "string" && course.featured_image?.trim() ? course.featured_image : '';
                   return (
                     <div key={course.id} className="bg-white border rounded-xl shadow p-4 flex flex-col hover:shadow-lg transition-shadow">
-                      <div className="relative w-full h-48 mb-4">
+                      <div className="relative w-full h-35 mb-4">
                         <Image 
                           src={imageSrc} 
                           alt={course.title} 

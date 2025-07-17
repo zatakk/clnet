@@ -83,17 +83,6 @@ export default function Footer() {
                   data-aos-duration="1800">
                   Courses, Careers & Connections
                 </h5>
-                <div
-                  className="sm:mt-6 mt-4 flex items-center gap-2"
-                  data-aos="fade-up"
-                  data-aos-duration="2200">
-
-                  <Link href="javascript:void(0)" className="btn">
-                    <span className="sm:px-2 px-[6px] sm:py-2 py-[6px] flex items-center">
-                      <i className="sm:text-[28px] text-[20px] ph ph-linkedin-logo"></i>
-                    </span>
-                  </Link>
-                </div>
               </div>
             </div>
 
@@ -234,11 +223,31 @@ export default function Footer() {
                   <li
                     className="mt-2"
                     data-aos="fade-up"
-                    data-aos-duration="1800">
+                    data-aos-duration="1700">
                     <Link
                       href="/webinars"
                       className="text-nu20 hover:text-primary duration-500 text-[18px] font-normal">
                       Webinars
+                    </Link>
+                  </li>
+                  <li 
+                    className="mt-2" 
+                    data-aos="fade-up" 
+                    data-aos-duration="1800">
+                    <Link
+                      href="/blogs"
+                      className="text-nu20 hover:text-primary duration-500 text-[18px] font-normal">
+                      Blogs
+                    </Link>
+                  </li>
+                  <li 
+                    className="mt-2" 
+                    data-aos="fade-up" 
+                    data-aos-duration="1600">
+                    <Link
+                      href="/events"
+                      className="text-nu20 hover:text-primary duration-500 text-[18px] font-normal">
+                      Events
                     </Link>
                   </li>
                   <li
@@ -246,9 +255,19 @@ export default function Footer() {
                     data-aos="fade-up"
                     data-aos-duration="2000">
                     <Link
-                      href="/#jobs"
+                      href="/jobs"
                       className="text-nu20 hover:text-primary duration-500 text-[18px] font-normal">
                       Jobs
+                    </Link>
+                  </li>
+                  <li
+                    className="mt-2"
+                    data-aos="fade-up"
+                    data-aos-duration="2400">
+                    <Link
+                      href="memberships"
+                      className="text-nu20 hover:text-primary duration-500 text-[18px] font-normal">
+                      Memberships
                     </Link>
                   </li>
                   <li
@@ -271,17 +290,6 @@ export default function Footer() {
                       Assessments
                     </Link>
                   </li>
-                  <li
-                    className="mt-2"
-                    data-aos="fade-up"
-                    data-aos-duration="2400">
-                    <Link
-                      href="membership-details"
-                      className="text-nu20 hover:text-primary duration-500 text-[18px] font-normal">
-                      Membership
-                    </Link>
-                  </li>
-
                 </ul>
               </div>
             </div>

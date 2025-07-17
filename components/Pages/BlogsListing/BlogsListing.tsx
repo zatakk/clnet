@@ -14,6 +14,7 @@ interface Post {
   };
   link: string;
   categories: number[];
+  thumbnail: string; // Added explicit thumbnail field
   _embedded?: {
     "wp:featuredmedia"?: Array<{
       source_url: string;
@@ -34,14 +35,20 @@ export default function BlogsListing() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch(
-        `https://construction-world.org/blogs/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&_embed`
-      );
-      const data: Post[] = await res.json();
-      const totalPages = res.headers.get("X-WP-TotalPages");
-
-      setPosts(data);
-      setTotalPages(Number(totalPages));
+      try {
+        const res = await fetch(
+          `https://construction-world.org/blogs/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&_embed`
+        );
+        if (!res.ok) throw new Error("Failed to fetch posts");
+        const data: Post[] = await res.json();
+        const totalPages = res.headers.get("X-WP-TotalPages");
+        setPosts(data);
+        setTotalPages(Number(totalPages) || 1);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+        setPosts([]);
+        setTotalPages(1);
+      }
     };
 
     fetchPosts();
@@ -68,20 +75,19 @@ export default function BlogsListing() {
 
         <div className="grid grid-cols-12 gap-6">
           {posts.map((post) => {
-            const image =
-              post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-              "/default-image.jpg";
+            const image = post.thumbnail && post.thumbnail.trim() ? post.thumbnail : "/default-image.jpg";
 
             return (
               <div key={post.id} className="xl:col-span-4 md:col-span-6 col-span-12">
                 <div className="bg-secondary1 w-full h-full md:px-6 sm:px-4 px-2 md:py-6 sm:py-4 py-2">
-                  <div className="img-box relative">
+                  <div className="img-box relative w-[365px] h-[245px]">
                     <Image
                       src={image}
-                      width={500}
-                      height={300}
-                      className="w-full h-auto object-cover"
-                      alt={post.title.rendered}
+                      width={365}
+                      height={245}
+                      className="w-full h-full object-cover rounded"
+                      alt={stripHtmlTags(post.title.rendered)}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 365px"
                     />
                     <div className="absolute bottom-[20px] left-[20px]">
                       <p className="sm:px-4 px-3 py-1 text-[14px] font-medium bg-primary text-nu30">
@@ -118,7 +124,7 @@ export default function BlogsListing() {
           <button
             onClick={handlePrev}
             disabled={page === 1}
-            className="px-4 py-2 border border-nu40 text-nu30"
+            className="px-4 py-2 border border-nu40 text-nu30 disabled:opacity-50"
           >
             Prev
           </button>
@@ -126,7 +132,7 @@ export default function BlogsListing() {
           <button
             onClick={handleNext}
             disabled={page === totalPages}
-            className="px-4 py-2 border border-nu40 text-nu30"
+            className="px-4 py-2 border border-nu40 text-nu30 disabled:opacity-50"
           >
             Next
           </button>

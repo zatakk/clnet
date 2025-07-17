@@ -10,7 +10,15 @@ interface MembershipLevel {
   cycle_number: string;
   cycle_period: string;
   buy_url: string;
+  description: string;
 }
+
+// Placeholder BestRibbon component
+const BestRibbon = ({ text }: { text: string }) => (
+  <div className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+    {text}
+  </div>
+);
 
 export default function MembershipsListing() {
   const [levels, setLevels] = useState<MembershipLevel[]>([]);
@@ -45,8 +53,40 @@ export default function MembershipsListing() {
     return `${num} ${cycle_period}${num > 1 ? "s" : ""}`;
   };
 
+  // Map levels to package structure
+  const studentPackages = levels.map((level) => {
+    const nameParts = (level.level_name || "Unnamed").split(" ");
+    const firstPart = nameParts[0] || "Unnamed";
+    const secondPart = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
+    return {
+      name: level.level_name,
+      price: level.initial_payment,
+      duration: level.billing_amount > 0
+        ? `₹${level.billing_amount} every ${formatCycle(level.cycle_number, level.cycle_period)}`
+        : "No recurring payments",
+      features: level.description || '<ul><li>No features available</li></ul>',
+      cta: { href: level.buy_url, text: "Select Package" },
+      ribbon: level.level_name.toLowerCase().includes("premium") ? "Best Value" : null,
+      firstPart,
+      secondPart,
+    };
+  });
+
+  // Placeholder background style
+  const cardBgStyle = { backgroundColor: "#ffffff" };
+
   return (
     <section className="bg-gray-50 py-16 px-4" id="membership-levels">
+      <style jsx>{`
+        .features-container ul {
+          list-style-type: disc !important;
+          list-style-position: outside !important;
+          margin-left: 0;
+        }
+        .features-container li {
+          list-style-type: disc !important;
+        }
+      `}</style>
       <div className="max-w-7xl mx-auto text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">Choose Your Membership</h1>
         <p className="text-gray-600 text-lg">
@@ -57,30 +97,35 @@ export default function MembershipsListing() {
       {loading ? (
         <div className="text-center text-lg font-semibold text-gray-500">Loading...</div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {levels.map((level) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+          {studentPackages.map((pkg, idx) => (
             <div
-              key={level.level_id}
-              className="bg-white border border-gray-200 shadow-lg rounded-2xl p-6 transition-transform transform hover:-translate-y-2 flex flex-col"
+              key={pkg.name}
+              className="relative bg-gray-50 rounded-2xl p-2 border border-gray-100 hover:scale-105 hover:border-[#ffc000] transition-transform duration-200 cursor-pointer"
             >
-              <h3 className="text-2xl font-bold text-primary mb-2">{level.level_name}</h3>
-              <div className="text-4xl font-extrabold text-gray-900 mb-4">
-                {level.initial_payment > 0 ? `₹${level.initial_payment}` : "Free"}
-              </div>
-              <p className="text-gray-600 text-sm mb-6">
-                {level.billing_amount > 0
-                  ? `₹${level.billing_amount} every ${formatCycle(level.cycle_number, level.cycle_period)}`
-                  : "No recurring payments"}
-              </p>
-
-              <a
-                href={level.buy_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-auto inline-block bg-primary text-white font-semibold py-2 px-5 rounded hover:bg-opacity-90 transition"
+              <div
+                className="rounded-xl p-8 flex flex-col items-center w-full h-full"
+                style={cardBgStyle}
               >
-                Select Package
-              </a>
+                {pkg.ribbon && <BestRibbon text={pkg.ribbon} />}
+                <div className="w-full rounded-lg bg-gray-900 text-white mb-6 flex flex-col items-center py-4 px-2">
+                  <h3 className="text-xl font-bold mb-1 text-white">{pkg.firstPart}</h3>
+                  <span className="text-base font-semibold tracking-wide mb-2">{pkg.secondPart}</span>
+                  <div className="text-4xl font-extrabold mb-1 text-white">₹{pkg.price}</div>
+                  <div className="text-gray-200 text-sm">{pkg.duration}</div>
+                </div>
+                {/* Render raw HTML for features with styling */}
+                <div
+                  className="features-container mb-8 w-full text-gray-700 text-base pl-4"
+                  dangerouslySetInnerHTML={{ __html: pkg.features }}
+                />
+                <a
+                  href={pkg.cta.href}
+                  className="mt-auto bg-[#ffc000] hover:bg-[#e6ad00] text-black font-bold px-8 py-2 rounded-lg transition shadow"
+                >
+                  {pkg.cta.text}
+                </a>
+              </div>
             </div>
           ))}
         </div>
